@@ -5,7 +5,7 @@ type onSetCallbackType = {
 
 type onSetAnyCallbackType = Function
 
-export default class Trap<T extends Object> {
+export default class Mousetrap<T extends Object> {
   onSetCallbacks: Array<onSetCallbackType> = []
   onSetAnyCallbacks: Array<onSetAnyCallbackType> = []
   proxy: any
