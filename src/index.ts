@@ -9,8 +9,11 @@ export default class Mousetrap<T extends Object> {
   onSetCallbacks: Array<onSetCallbackType> = []
   onSetAnyCallbacks: Array<onSetAnyCallbackType> = []
   proxy: any
+  object: T
 
-  constructor(private object: T) {}
+  constructor(object: T) {
+    this.object = object;
+  }
 
   onSet(propertyName: string, callback: Function) {
     this.onSetCallbacks.push({ propertyName, callback })
@@ -40,7 +43,7 @@ export default class Mousetrap<T extends Object> {
           Object.entries(that.onSetCallbacks).forEach(
             ([index, onSetCallback]) => {
               if (property === onSetCallback.propertyName) {
-                onSetCallback.callback()
+                onSetCallback.callback(value)
               }
             }
           )

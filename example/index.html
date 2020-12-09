@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="updateDate">Update date</button>
+    <pre id="date"></pre>
+
+    <script src="../dist/index.js"></script>
+    <script>
+
+        let state = {
+            date: new Date()
+        }
+
+        const trap = new Mousetrap(state)
+        trap.onSet('date', function(value){
+            console.log('Calendar date changed')
+            dateText.innerText = value
+        })
+        const calendar = trap.setup()
+
+        var updateDateButton = document.getElementById("updateDate")
+        var dateText = document.getElementById("date")
+        updateDateButton.addEventListener('click', function(){
+            console.log('Button clicked')
+            calendar.date = new Date()
+        })
+    </script>
+</body>
+</html>
